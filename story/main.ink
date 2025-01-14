@@ -8,7 +8,6 @@
     In the real game (www.inklestudios.com/overboard) conversation options are added between hands, and there a few other more nefarious strategies for tilting the game in your favour!
 
 */
-INCLUDE gameplay.ink
 INCLUDE functions/functions.ink
 
 -> play_game -> END 
