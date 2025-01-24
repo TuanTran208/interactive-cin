@@ -1,26 +1,39 @@
-LIST Suits = Spades = 0, Diamonds, Hearts, Clubs
 
-LIST Values = Ace = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King
-
-VAR myCards = ()
-VAR hisCards = ()
-VAR faceUpCards = ()
-
-VAR money = 400 
+VAR CHARACTER_A = "Kaelin"
+VAR CHARACTER_B = "Helios"
+VAR CHARACTER_C = "Test" 
 
 
-VAR CstrsBank = 1000
+// Story variables
+VAR DAGGER = false
+VAR BERRIES = false
+VAR MAP_LAYOUT = false
+VAR ROLLING_SKILL = false
 
- LIST PackOfCards = 
-    A_Spades = 1, 2_Spades, 3_Spades, 4_Spades, 
-    5_Spades, 6_Spades, 7_Spades, 8_Spades,
-    9_Spades, 10_Spades, J_Spades, Q_Spades, K_Spades,
-    A_Diamonds = 101 , 2_Diamonds, 3_Diamonds, 4_Diamonds, 
-    5_Diamonds, 6_Diamonds, 7_Diamonds, 8_Diamonds,
-    9_Diamonds, 10_Diamonds, J_Diamonds, Q_Diamonds, K_Diamonds,
-    A_Hearts = 201, 2_Hearts, 3_Hearts, 4_Hearts, 
-    5_Hearts, 6_Hearts, 7_Hearts, 8_Hearts,
-    9_Hearts, 10_Hearts, J_Hearts, Q_Hearts, K_Hearts,
-    A_Clubs = 301, 2_Clubs, 3_Clubs, 4_Clubs, 
-    5_Clubs, 6_Clubs, 7_Clubs, 8_Clubs,
-    9_Clubs, 10_Clubs, J_Clubs, Q_Clubs, K_Clubs
+
+// Checkpoint system
+VAR current_checkpoint = ""
+LIST Checkpoints = attack_checkpoint, to_basement, to_stable, main_gate
+
+// Global variables to track player choices and knowledge
+VAR identified_elara = false
+VAR suspicious_of_helios = false
+VAR found_clan_badge = false
+VAR understands_security = false
+
+=== function save_checkpoint(checkpoint_name) ===
+~ current_checkpoint = checkpoint_name
+
+=== checkpoint_return ===
+{ current_checkpoint:
+    - "attack_checkpoint":
+        ->-> THE_ATTACK
+    - "to_basement":
+        ->-> TO_BASEMENT
+    - "to_stable":
+        ->-> TO_STABLE
+    - "main_gate":
+        ->-> MAINGATE
+    - else:
+        ->-> MORNING
+}
